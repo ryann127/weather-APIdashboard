@@ -1,0 +1,17 @@
+.hero {
+    background: linear-gradient(
+    to right,
+    aqua,
+    orange)
+}
+.title {
+    color: #fff;
+    text-align: center;
+    font-size: 50px;
+  }
+
+  .card {
+    background-color: #a5b1c2;
+    margin: 3px;
+    min-height: 300px;
+  }

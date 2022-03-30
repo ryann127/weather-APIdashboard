@@ -4,9 +4,38 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+  <link rel="stylesheet" href="./assets/style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+  <title>Weather Dashboard</title>
 </head>
 <body>
+    <section class="hero">
+        <div class="hero-body">
+          <div class="container">
+            <h1 class="title">Weather Dashboard</h1>
+          </div>
+        </div>
+      </section>
+
+    <main class="flex-row justify-space-between">
+        <div class="col-12 col-md-4">
     
+          <div class="card">
+            <h3 class="card-header">Search By City</h3>
+            <form id="user-form" class="card-body">
+              <input name="city" placeholder= "Enter City Name" id="city" type="text" autofocus="true" class="form-input" />
+              <button type="submit" class="btn">Get Weather</button>
+            </form>
+          </div>
+        </div>
+    </main>
+    
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"
+    ></script>
+    <script src="./assets/script.js"></script>
 </body>
 </html>
