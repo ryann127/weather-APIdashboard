@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
   <link rel="stylesheet" href="./assets/style.css" />
@@ -18,9 +19,9 @@
           </div>
         </div>
       </section>
-
-    <main class="flex-row justify-space-between">
-        <div class="col-12 col-md-4">
+<div class="container-fluid">
+    <main class="row d-flex justify-space-between">
+        <div class="col-12 col-md-3">
     
           <div class="card">
             <h3 class="card-header">Search By City</h3>
@@ -28,9 +29,18 @@
               <input name="city" placeholder= "Enter City Name" id="city" type="text" autofocus="true" class="form-input" />
               <button type="submit" class="btn">Get Weather</button>
             </form>
+            <ul id="city-list"></ul>
           </div>
         </div>
-    </main>
+        <div class="col-12 col-md-9 bg-info text-white current-card"  id = "current-forecast">
+            
+            <!-- <div class = "row border" id = "five-day-forecast">
+                    <h2 class= "col-12" id = "forecast"></h2>
+                    <div class = "d-flex" id = "fiveday-container"></div>
+            </div>   -->
+        </div>
+     </main>
+    </div>
     
     <script
       type="text/javascript"

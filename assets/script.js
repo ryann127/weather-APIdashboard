@@ -2,6 +2,67 @@
 
 var searchInput = document.getElementById('city');
 var userForm = document.getElementById('user-form');
+var currentWeather = document.querySelector('#current-forecast');
+var cityList = document.getElementById('city-list')
+
+var cities = [];
+
+// The following function renders items in a todo list as <li> elements
+function renderCities() {
+  // Clear todoList element
+  cityList.innerHTML = "";
+
+  // Render a new li for each todo
+  for (var i = 0; i < cities.length; i++) {
+    var cityName = cities[i];
+
+    var li = document.createElement("li");
+    li.textContent = cityName + " ";
+    li.setAttribute("data-index", i);
+
+    var button = document.createElement("button");
+    button.textContent = "Search";
+
+    li.appendChild(button);
+    cityList.appendChild(li);
+  }
+}
+
+function init() {
+  // Get stored todos from localStorage
+  var storedCities = JSON.parse(localStorage.getItem("cities"));
+
+  // If todos were retrieved from localStorage, update the todos array to it
+  if (storedCities !== null) {
+    cities = storedCities;
+  }
+
+  // This is a helper function that will render todos to the DOM
+  renderCities();
+}
+
+function storeCities() {
+  // Stringify and set key in localStorage to todos array
+  localStorage.setItem("cities", JSON.stringify(cities));
+}
+
+userForm.addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  var cityText = searchInput.value.trim();
+
+  // Return from function early if submitted todoText is blank
+  if (cityText === "") {
+    return;
+  }
+
+  // Add new todoText to todos array, clear the input
+  cities.push(cityText);
+  
+  // Store updated todos in localStorage, re-render the list
+  storeCities();
+  renderCities();
+});
 
 function getApi(cityInfo) {
     console.log(cityInfo)
@@ -44,6 +105,18 @@ function renderWeather(daily) {
     var windSpeed = daily.current.wind_speed;
     var uvIndex = daily.current.uvi;
     var weatherConditions = daily.current.weather[0].description
+    var todayDate = moment().format("MMMM Do, YYYY")
+
+    var template = `
+      <h2> ${searchInput.value} - ${todayDate}</h2> 
+      <div class="text-center"> Current Temp: ${temperature}°F</div> 
+      <div class="text-center"> Humidity: ${humidity}%</div>
+      <div class="text-center"> Wind Speed: ${windSpeed} MPH</div>
+      <div class="text-center"> UV Index: ${uvIndex} </div>
+      <div class="text-center"> Current Conditions: ${weatherConditions} </div>`
+
+      currentWeather.innerHTML = template;
+
 
     console.log(weatherConditions)
 

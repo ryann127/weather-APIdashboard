@@ -1,0 +1,59 @@
+var cities = [];
+
+// The following function renders items in a todo list as <li> elements
+function renderCities() {
+  // Clear todoList element
+  cityList.innerHTML = "";
+
+  // Render a new li for each todo
+  for (var i = 0; i < cities.length; i++) {
+    var cityName = cities[i];
+
+    var li = document.createElement("li");
+    li.textContent = cityName;
+    li.setAttribute("data-index", i);
+
+    var button = document.createElement("button");
+    button.textContent = "Search";
+
+    li.appendChild(button);
+    cityList.appendChild(li);
+  }
+}
+
+function init() {
+  // Get stored todos from localStorage
+  var storedCities = JSON.parse(localStorage.getItem("cities"));
+
+  // If todos were retrieved from localStorage, update the todos array to it
+  if (storedCities !== null) {
+    cities = storedCities;
+  }
+
+  // This is a helper function that will render todos to the DOM
+  renderCities();
+}
+
+function storeCities() {
+  // Stringify and set key in localStorage to todos array
+  localStorage.setItem("cities", JSON.stringify(cities));
+}
+
+userForm.addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  var cityText = searchInput.value.trim();
+
+  // Return from function early if submitted todoText is blank
+  if (cityText === "") {
+    return;
+  }
+
+  // Add new todoText to todos array, clear the input
+  cities.push(cityText);
+  searchInput = "";
+
+  // Store updated todos in localStorage, re-render the list
+  storeCities();
+  renderCities();
+});

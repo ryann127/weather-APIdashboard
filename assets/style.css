@@ -15,3 +15,18 @@
     margin: 3px;
     min-height: 300px;
   }
+
+  .current-card{
+      border-radius: 5px;
+      margin-top: 3px;
+  }
+  .btn {
+      background-color: lightblue;
+  }
+
+  h2 {
+      font-size: 35px;
+      margin-bottom: 25px;
+  }
+
+ 
