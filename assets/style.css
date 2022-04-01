@@ -29,4 +29,15 @@
       margin-bottom: 25px;
   }
 
+  #good{
+    color: green;
+  }
+
+  #moderate{
+    color: orange;
+  }
+
+  #severe{
+    color: red;
+  }
  

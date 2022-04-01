@@ -4,15 +4,16 @@ var searchInput = document.getElementById('city');
 var userForm = document.getElementById('user-form');
 var currentWeather = document.querySelector('#current-forecast');
 var cityList = document.getElementById('city-list')
+var indexScale = document.querySelector('index-scale');
 
 var cities = [];
 
-// The following function renders items in a todo list as <li> elements
+// The following function renders items in a city list as <li> elements
 function renderCities() {
   // Clear todoList element
   cityList.innerHTML = "";
 
-  // Render a new li for each todo
+  // Render a new li for each city
   for (var i = 0; i < cities.length; i++) {
     var cityName = cities[i];
 
@@ -29,20 +30,20 @@ function renderCities() {
 }
 
 function init() {
-  // Get stored todos from localStorage
+  // Get stored cities from localStorage
   var storedCities = JSON.parse(localStorage.getItem("cities"));
 
-  // If todos were retrieved from localStorage, update the todos array to it
+  // If cities were retrieved from localStorage, update the cities array to it
   if (storedCities !== null) {
     cities = storedCities;
   }
 
-  // This is a helper function that will render todos to the DOM
+  // This is a helper function that will render cities to the DOM
   renderCities();
 }
 
 function storeCities() {
-  // Stringify and set key in localStorage to todos array
+  // Stringify and set key in localStorage to cities array
   localStorage.setItem("cities", JSON.stringify(cities));
 }
 
@@ -107,12 +108,13 @@ function renderWeather(daily) {
     var weatherConditions = daily.current.weather[0].description
     var todayDate = moment().format("MMMM Do, YYYY")
 
+//create rest of variables. last will be var template = `${temperature}`. use innerhtml to append to where I want it to be in HTML. div.innerHTML = template
     var template = `
       <h2> ${searchInput.value} - ${todayDate}</h2> 
       <div class="text-center"> Current Temp: ${temperature}°F</div> 
       <div class="text-center"> Humidity: ${humidity}%</div>
       <div class="text-center"> Wind Speed: ${windSpeed} MPH</div>
-      <div class="text-center"> UV Index: ${uvIndex} </div>
+      <div class="text-center" id="index-scale"> UV Index: ${uvIndex} </div>
       <div class="text-center"> Current Conditions: ${weatherConditions} </div>`
 
       currentWeather.innerHTML = template;
@@ -120,9 +122,18 @@ function renderWeather(daily) {
 
     console.log(weatherConditions)
 
-    //create rest of variables. last will be var template = `${temperature}`. use innerhtml to append to where I want it to be in HTML. div.innerHTML = template
+    if (uvIndex>2&&uvIndex<8){
+      $("#index-scale").css("color", "yellow");
+    } if (uvIndex>=8){
+      $("#index-scale").css("color", "red");
+    } else {
+      $("#index-scale").css("color", "green");
+    }
 
+  
     //build elements in a for loop for 5 day forecast. will need to use appendChild method to avoid override
+
+    
 }
 
 // getApi(weatherForecastUrl);
