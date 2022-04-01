@@ -24,20 +24,14 @@
       background-color: lightblue;
   }
 
-  h2 {
+  h4 {
       font-size: 35px;
       margin-bottom: 25px;
   }
 
-  #good{
-    color: green;
+  h5{
+    font-size: 35px;
+    margin-left: 20px;
   }
-
-  #moderate{
-    color: orange;
-  }
-
-  #severe{
-    color: red;
-  }
+  
  
