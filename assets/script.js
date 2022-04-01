@@ -5,6 +5,11 @@ var userForm = document.getElementById('user-form');
 var currentWeather = document.querySelector('#current-forecast');
 var cityList = document.getElementById('city-list')
 var indexScale = document.querySelector('index-scale');
+var day1Weather = document.getElementById('day1')
+var day2Weather = document.getElementById('day2')
+var day3Weather = document.getElementById('day3')
+var day4Weather = document.getElementById('day4')
+var day5Weather = document.getElementById('day5')
 
 var cities = [];
 
@@ -103,7 +108,7 @@ function renderWeather(daily) {
   var temperature = Math.round(1.8 * ((daily.current.temp) - 273.15) + 32);
   console.log(temperature)
   var humidity = daily.current.humidity;
-  var windSpeed = daily.current.wind_speed;
+  var wind_speed = daily.current.wind_speed;
   var uvIndex = daily.current.uvi;
   var weatherConditions = daily.current.weather[0].description
   var todayIcon = daily.current.weather[0].icon;
@@ -115,7 +120,7 @@ function renderWeather(daily) {
       <h4> ${searchInput.value} - ${todayDate}</h4> 
       <div class="text-center"> Current Temp: ${temperature}°F</div> 
       <div class="text-center"> Humidity: ${humidity}%</div>
-      <div class="text-center"> Wind Speed: ${windSpeed} MPH</div>
+      <div class="text-center"> Wind Speed: ${wind_speed} MPH</div>
       <div class="text-center" id="index-scale"> UV Index: ${uvIndex} </div>
       <div class="text-center"> Current Conditions: ${weatherConditions} </div>
       <img class="rounded mx-auto d-block" src="http://openweathermap.org/img/wn/${todayIcon}@2x.png" alt="image that represents weather for the day"><img>`
@@ -131,59 +136,90 @@ function renderWeather(daily) {
     $("#index-scale").css("color", "yellow");
   } else {
     $("#index-scale").css("color", "green");
-  }
+  };
 
 
-  //build elements in a for loop for 5 day forecast. will need to use appendChild method to avoid override
+  date1 = `${moment(daily.daily[1].dt, "X").format("MMMM Do, YYYY")}`;
+  date2 = `${moment(daily.daily[2].dt, "X").format("MMMM Do, YYYY")}`;
+  date3 = `${moment(daily.daily[3].dt, "X").format("MMMM Do, YYYY")}`;
+  date4 = `${moment(daily.daily[4].dt, "X").format("MMMM Do, YYYY")}`;
+  date5 = `${moment(daily.daily[5].dt, "X").format("MMMM Do, YYYY")}`;
+
+
+  console.log(date1)
 
   //forecast temp variables
-  let day1temp = Math.round(1.8 * ((daily.daily[0].temp.day) - 273.15) + 32);
-  let day2temp = Math.round(1.8 * ((daily.daily[1].temp.day) - 273.15) + 32);
-  let day3temp = Math.round(1.8 * ((daily.daily[2].temp.day) - 273.15) + 32);
-  let day4temp = Math.round(1.8 * ((daily.daily[3].temp.day) - 273.15) + 32);
-  let day5temp = Math.round(1.8 * ((daily.daily[4].temp.day) - 273.15) + 32);
+  let day1temp = Math.round(1.8 * ((daily.daily[1].temp.day) - 273.15) + 32);
+  let day2temp = Math.round(1.8 * ((daily.daily[2].temp.day) - 273.15) + 32);
+  let day3temp = Math.round(1.8 * ((daily.daily[3].temp.day) - 273.15) + 32);
+  let day4temp = Math.round(1.8 * ((daily.daily[4].temp.day) - 273.15) + 32);
+  let day5temp = Math.round(1.8 * ((daily.daily[5].temp.day) - 273.15) + 32);
   console.log(day1temp);
   //forecast humidity variables
-  let day1hum = daily.daily[0].humidity;
-  let day2hum = daily.daily[1].humidity;
-  let day3hum = daily.daily[2].humidity;
-  let day4hum = daily.daily[3].humidity;
-  let day5hum = daily.daily[4].humidity;
+  let day1hum = daily.daily[1].humidity;
+  let day2hum = daily.daily[2].humidity;
+  let day3hum = daily.daily[3].humidity;
+  let day4hum = daily.daily[4].humidity;
+  let day5hum = daily.daily[5].humidity;
+  //forecast wind_speed variables
+  let day1wind = daily.daily[1].wind_speed
+  let day2wind = daily.daily[2].wind_speed
+  let day3wind = daily.daily[3].wind_speed
+  let day4wind = daily.daily[4].wind_speed
+  let day5wind = daily.daily[5].wind_speed
   //forecast weather icon variables
-  let icon1 = daily.daily[0].weather[0].icon;
-  let icon2 = daily.daily[1].weather[0].icon;
-  let icon3 = daily.daily[2].weather[0].icon;
-  let icon4 = daily.daily[3].weather[0].icon;
-  let icon5 = daily.daily[4].weather[0].icon;
+  let icon1 = daily.daily[1].weather[0].icon;
+  let icon2 = daily.daily[2].weather[0].icon;
+  let icon3 = daily.daily[3].weather[0].icon;
+  let icon4 = daily.daily[4].weather[0].icon;
+  let icon5 = daily.daily[5].weather[0].icon;
   //
-  $("#temp1").text("Temp(F):" + " " + day1temp.toFixed(1));
-  $("#temp2").text("Temp(F):" + " " + day2temp.toFixed(1));
-  $("#temp3").text("Temp(F):" + " " + day3temp.toFixed(1));
-  $("#temp4").text("Temp(F):" + " " + day4temp.toFixed(1));
-  $("#temp5").text("Temp(F):" + " " + day5temp.toFixed(1));
+  var template1 = `
+      <h4> ${date1}</h4> 
+      <div class="text-center"> Expected Temp: ${day1temp}°F</div> 
+      <div class="text-center"> Humidity: ${day1hum}%</div>
+      <div class="text-center"> Wind Speed: ${day1wind} MPH</div>
+      <img class="rounded mx-auto d-block" src="http://openweathermap.org/img/wn/${icon1}@2x.png" alt="image that represents weather for the day"><img>`
 
-  $("#hum1").text("Hum:" + " " + day1hum + "%");
-  $("#hum2").text("Hum:" + " " + day2hum + "%");
-  $("#hum3").text("Hum:" + " " + day3hum + "%");
-  $("#hum4").text("Hum:" + " " + day4hum + "%");
-  $("#hum5").text("Hum:" + " " + day5hum + "%");
+  day1Weather.innerHTML = template1;
 
-  $("#icon1").html(
-    `<img src="http://openweathermap.org/img/wn/${icon1}@2x.png">`
-  );
-  $("#icon2").html(
-    `<img src="http://openweathermap.org/img/wn/${icon2}@2x.png">`
-  );
-  $("#icon3").html(
-    `<img src="http://openweathermap.org/img/wn/${icon3}@2x.png">`
-  );
-  $("#icon4").html(
-    `<img src="http://openweathermap.org/img/wn/${icon4}@2x.png">`
-  );
-  $("#icon5").html(
-    `<img src="http://openweathermap.org/img/wn/${icon5}@2x.png">`
+  var template2 = `
+      <h4> ${date2}</h4> 
+      <div class="text-center"> Expected Temp: ${day2temp}°F</div> 
+      <div class="text-center"> Humidity: ${day2hum}%</div>
+      <div class="text-center"> Wind Speed: ${day2wind} MPH</div>
+      <img class="rounded mx-auto d-block" src="http://openweathermap.org/img/wn/${icon2}@2x.png" alt="image that represents weather for the day"><img>`
 
-  )}
+  day2Weather.innerHTML = template2;
+
+  var template3 = `
+      <h4> ${date3}</h4> 
+      <div class="text-center"> Expected Temp: ${day3temp}°F</div> 
+      <div class="text-center"> Humidity: ${day3hum}%</div>
+      <div class="text-center"> Wind Speed: ${day3wind} MPH</div>
+      <img class="rounded mx-auto d-block" src="http://openweathermap.org/img/wn/${icon3}@2x.png" alt="image that represents weather for the day"><img>`
+
+  day3Weather.innerHTML = template3;
+
+  var template4 = `
+      <h4> ${date4}</h4> 
+      <div class="text-center"> Expected Temp: ${day4temp}°F</div> 
+      <div class="text-center"> Humidity: ${day4hum}%</div>
+      <div class="text-center"> Wind Speed: ${day4wind} MPH</div>
+      <img class="rounded mx-auto d-block" src="http://openweathermap.org/img/wn/${icon4}@2x.png" alt="image that represents weather for the day"><img>`
+
+  day4Weather.innerHTML = template4;
+
+  var template5 = `
+      <h4> ${date5}</h4> 
+      <div class="text-center"> Expected Temp: ${day5temp}°F</div> 
+      <div class="text-center"> Humidity: ${day5hum}%</div>
+      <div class="text-center"> Wind Speed: ${day5wind} MPH</div>
+      <img class="rounded mx-auto d-block" src="http://openweathermap.org/img/wn/${icon5}@2x.png" alt="image that represents weather for the day"><img>`
+
+  day5Weather.innerHTML = template5;
+
+}
 
 // getApi(weatherForecastUrl);
 userForm.addEventListener('submit', getCoordinate);
