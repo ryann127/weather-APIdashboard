@@ -91,7 +91,7 @@ function getApi(cityInfo) {
 function getCoordinate(event) {
   event.preventDefault()
   var city = searchInput.value
-  var geocodingUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=6756ca534929073d4d2ac4df8cf2ffe5`
+  var geocodingUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=6756ca534929073d4d2ac4df8cf2ffe5`
 
   fetch(geocodingUrl).then(daily => daily.json())
     .then(data => getApi(data));
@@ -123,7 +123,7 @@ function renderWeather(daily) {
       <div class="text-center"> Wind Speed: ${wind_speed} MPH</div>
       <div class="text-center" id="index-scale"> UV Index: ${uvIndex} </div>
       <div class="text-center"> Current Conditions: ${weatherConditions} </div>
-      <img class="rounded mx-auto d-block" src="http://openweathermap.org/img/wn/${todayIcon}@2x.png" alt="image that represents weather for the day"><img>`
+      <img class="rounded mx-auto d-block" src="https://openweathermap.org/img/wn/${todayIcon}@2x.png" alt="image that represents weather for the day"><img>`
 
   currentWeather.innerHTML = template;
 
@@ -179,7 +179,7 @@ function renderWeather(daily) {
       <div class="text-center"> Expected Temp: ${day1temp}°F</div> 
       <div class="text-center"> Humidity: ${day1hum}%</div>
       <div class="text-center"> Wind Speed: ${day1wind} MPH</div>
-      <img class="rounded mx-auto d-block" src="http://openweathermap.org/img/wn/${icon1}@2x.png" alt="image that represents weather for the day"><img>`
+      <img class="rounded mx-auto d-block" src="https://openweathermap.org/img/wn/${icon1}@2x.png" alt="image that represents weather for the day"><img>`
 
   day1Weather.innerHTML = template1;
 
@@ -188,7 +188,7 @@ function renderWeather(daily) {
       <div class="text-center"> Expected Temp: ${day2temp}°F</div> 
       <div class="text-center"> Humidity: ${day2hum}%</div>
       <div class="text-center"> Wind Speed: ${day2wind} MPH</div>
-      <img class="rounded mx-auto d-block" src="http://openweathermap.org/img/wn/${icon2}@2x.png" alt="image that represents weather for the day"><img>`
+      <img class="rounded mx-auto d-block" src="https://openweathermap.org/img/wn/${icon2}@2x.png" alt="image that represents weather for the day"><img>`
 
   day2Weather.innerHTML = template2;
 
@@ -197,7 +197,7 @@ function renderWeather(daily) {
       <div class="text-center"> Expected Temp: ${day3temp}°F</div> 
       <div class="text-center"> Humidity: ${day3hum}%</div>
       <div class="text-center"> Wind Speed: ${day3wind} MPH</div>
-      <img class="rounded mx-auto d-block" src="http://openweathermap.org/img/wn/${icon3}@2x.png" alt="image that represents weather for the day"><img>`
+      <img class="rounded mx-auto d-block" src="https://openweathermap.org/img/wn/${icon3}@2x.png" alt="image that represents weather for the day"><img>`
 
   day3Weather.innerHTML = template3;
 
@@ -206,7 +206,7 @@ function renderWeather(daily) {
       <div class="text-center"> Expected Temp: ${day4temp}°F</div> 
       <div class="text-center"> Humidity: ${day4hum}%</div>
       <div class="text-center"> Wind Speed: ${day4wind} MPH</div>
-      <img class="rounded mx-auto d-block" src="http://openweathermap.org/img/wn/${icon4}@2x.png" alt="image that represents weather for the day"><img>`
+      <img class="rounded mx-auto d-block" src="https://openweathermap.org/img/wn/${icon4}@2x.png" alt="image that represents weather for the day"><img>`
 
   day4Weather.innerHTML = template4;
 
@@ -215,7 +215,7 @@ function renderWeather(daily) {
       <div class="text-center"> Expected Temp: ${day5temp}°F</div> 
       <div class="text-center"> Humidity: ${day5hum}%</div>
       <div class="text-center"> Wind Speed: ${day5wind} MPH</div>
-      <img class="rounded mx-auto d-block" src="http://openweathermap.org/img/wn/${icon5}@2x.png" alt="image that represents weather for the day"><img>`
+      <img class="rounded mx-auto d-block" src="https://openweathermap.org/img/wn/${icon5}@2x.png" alt="image that represents weather for the day"><img>`
 
   day5Weather.innerHTML = template5;
 
